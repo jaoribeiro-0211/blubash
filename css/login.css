@@ -1,0 +1,36 @@
+.login {
+  background-color: white;
+  width: 90%;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+@media (min-width: 576px) {
+  .login {
+    width: 90%;
+  }
+}
+
+@media (min-width: 768px) {
+  .login {
+    width: 50%;
+  }
+}
+
+@media (min-width: 992px) {
+  .login {
+    width: 35%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .login {
+    width: 30%;
+  }
+}
+
+@media (min-width: 1400px) {
+  .login {
+    width: 20%;
+  }
+}

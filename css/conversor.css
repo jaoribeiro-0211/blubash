@@ -1,0 +1,15 @@
+.conversor {
+    width: 90%;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+#converter {
+    margin-top: 30px;
+}
+
+.resultado {
+    font-weight: bold;
+    margin-top: 12px;
+}

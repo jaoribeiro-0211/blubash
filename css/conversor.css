@@ -13,3 +13,28 @@
     font-weight: bold;
     margin-top: 12px;
 }
+
+.gridConversor {
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr;
+
+    grid-template-areas: ". titleGrid logout";
+    grid-gap: 10px;
+ 
+
+}
+
+.titleGrid {
+    grid-area:titleGrid;  
+   
+    height: 35px;
+}
+.logout {
+    grid-area: logout;
+    display:flex;
+    align-items: center;
+    justify-content: end;
+   
+    height: 35px;
+  
+}

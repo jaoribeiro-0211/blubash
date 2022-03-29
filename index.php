@@ -1,3 +1,41 @@
+<?php
+include("conexao.php");
+/* Verifica se os campos estao vazio */
+if(isset($_POST['login']) || isset($_POST['password'])){
+  
+  if(strlen($_POST['login']) == 0){
+    echo "Preencha o campo login";
+  } else if(strlen($_POST['password']) == 0){
+    echo "Preencha o campo password";
+  } else {
+    /* Evitando sqlInjection */
+    $login = $mysqli->real_escape_string($_POST['login']);
+    $password = $mysqli->real_escape_string($_POST['password']);
+    /* Verificando se tem login e password no banco */
+    $sql_code = 'SELECT * FROM usuarios WHERE login = "'.$login.'" AND password = "'.$password.'"';
+    $sql_query = $mysqli->query($sql_code) or die("Falha na execução do código" . $mysqli->error);
+
+    /* Retorna quantas linhas essa consulta retorno  */
+    $quantidade = $sql_query -> num_rows;
+
+    if($quantidade == 1){
+      $usuario = $sql_query->fetch_assoc();
+
+      if(!isset($_SESSION)){
+        session_start();
+      }
+      $_SESSION['id'] = $usuario['id'];
+      $_SESSION['login'] = $usuario['login'];
+
+      header('Location: conversor.php');
+    }  else {
+      $msgErro = "Falha ao logar! login ou password incorreta";
+     /*  echo "Falha ao logar! login ou password incorreta"; */
+    }
+  }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -18,14 +56,15 @@
   </head>
   <body>
     <div class="d-flex justify-content-center align-items-center vh-100">
-      <form class="login">
+      <form class="login" action="" method="POST">
         <div class="mb-3">
           <label for="Login" class="form-label">Login</label>
           <input
-            type="email"
+            type="text"
             class="form-control"
             id="Login"
             placeholder="login"
+            name="login"
           />
         </div>
         <div class="mb-3">
@@ -35,13 +74,16 @@
             class="form-control"
             id="password"
             placeholder="password"
+            name="password"
           />
-          <button type="button" class="btn btn-primary mt-3 w-100">
-            <span
-              class="spinner-border spinner-border-sm spinnerLogin"
-              role="status"
-              aria-hidden="true"
-            ></span>
+          <p class="mt-2">
+            <?php
+            if(isset($msgErro)){
+              echo $msgErro; 
+            }
+            ?>
+          </p>
+          <button type="submit" class="btn btn-primary  w-100">
             Login
           </button>
         </div>

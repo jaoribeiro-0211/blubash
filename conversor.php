@@ -37,7 +37,7 @@ include("protect.php")
                     <div class="d-flex justify-content-center align-items-center gap-4">
                         <div>
                             <label for="converterDe" class="form-label">Converter de</label>
-                            <select class="form-select" aria-label="Default select example" id="converterDe">
+                            <select class="form-select" name="converterDe" aria-label="Default select example" id="converterDe">
                           <option selected>Selecione uma opção</option>
                           <option value="BRL">BRL</option>
                           <option value="USD">USD</option>
@@ -51,7 +51,7 @@ include("protect.php")
 
                         <div>
                             <label for="para" class="form-label">Para</label>
-                            <select class="form-select" aria-label="Default select example" id="para">
+                            <select class="form-select" name="para" aria-label="Default select example" id="para">
                           <option selected>Selecione uma opção</option>
                           <option value="BRL">BRL</option>
                           <option value="USD">USD</option>
@@ -61,7 +61,10 @@ include("protect.php")
                         <button type="button" class="btn btn-success" id="converter">Converter</button>
                     </div>
                     <div>
-                        <p class="fs-5"><span class="fw-bolder ">Resultado da conversão:</span> <span id="resultado">00,00</span> </p>
+                        <p class="fs-5">
+                            <input type="text"  name="inputResultado"  value="">
+                            <span class="fw-bolder ">Resultado da conversão:</span> <span id="resultado">00,00</span>
+                        </p>
                     </div>
                 </div>
             </form>

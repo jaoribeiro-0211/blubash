@@ -8,6 +8,9 @@ $mysqli = new mysqli($host, $usuario, $senha, $database);
 
 
 
-/* $faixa_atraso = filter_input(INPUT_POST, 'faixa_atraso'); */
+$converterDe = filter_input(INPUT_POST, 'converterDe');
+
+
+
 
 ?>

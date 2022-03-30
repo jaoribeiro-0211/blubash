@@ -68,7 +68,7 @@ include("protect.php")
                     </div>
                 </div>
             </form>
-            <table id="example" class="table" style="width:100%">
+            <table id="tabelaConversor" class="table table-striped table-bordered"  style="width:100%">
             <thead>
                 <tr>
                 <th scope="col">Converter de</th>

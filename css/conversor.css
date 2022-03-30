@@ -16,25 +16,78 @@
 
 .gridConversor {
     display: grid;
-    grid-template-columns:1fr 1fr 1fr;
-
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: ". titleGrid logout";
     grid-gap: 10px;
- 
-
 }
 
 .titleGrid {
-    grid-area:titleGrid;  
-   
+    grid-area: titleGrid;
     height: 35px;
 }
+
 .logout {
     grid-area: logout;
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: end;
-   
     height: 35px;
-  
+}
+
+
+/* -------------------------- DATA TABLES -------------------------- */
+
+
+/* Estilo Barra de Exibir */
+
+#tabelaConversor_length {
+    margin-top: 20px;
+    margin-bottom: 3px;
+    text-align: left;
+    display: flex!important;
+}
+
+#tabelaConversor_length label {
+    display: grid;
+    grid-template-columns: 50px 100px 200px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* Estilo Barra de Pesquisa */
+
+#tabelaConversor_filter {
+    margin-top: 20px;
+    margin-bottom: 3px;
+    display: flex!important;
+    flex-direction: row-reverse!important;
+}
+
+#tabelaConversor_filter label {
+    display: grid;
+    grid-template-columns: 68px 150px;
+    gap: 10px;
+}
+
+
+/* Estilo Ordem de pagina */
+
+#tabelaConversor_info {
+    padding: 0;
+    margin-left: 21px;
+    margin-top: 10px;
+    line-height: 40px;
+    text-align: left;
+    background-color: green;
+}
+
+
+/* Estilo Paginação */
+
+#tabelaConversor_paginate {
+    margin-right: 20px;
+    margin-top: 10px;
+    background-color: yellow;
 }

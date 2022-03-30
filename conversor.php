@@ -23,7 +23,7 @@ include("protect.php")
 
     <div class="d-flex justify-content-center align-items-center vh-100">      
         <div class="conversor">
-            <form action="" method="POST">
+            <form id="formConversor" action="" method="POST">
                 <div class="gridConversor mb-4">     
                     <h2 class="text-center titleGrid">Conversor</h2>
                     <div class="logout">
@@ -46,7 +46,7 @@ include("protect.php")
                         </div>
                         <div>
                             <label for="exampleFormControlInput1" class="form-label">Valor</label>
-                            <input type="email" class="form-control" id="valor" placeholder="300,00">
+                            <input type="text" class="form-control" id="valor" placeholder="300,00">
                         </div>
 
                         <div>
@@ -58,11 +58,11 @@ include("protect.php")
                           <option value="CAD">CAD</option>
                           </select>
                         </div>
-                        <button type="button" class="btn btn-success" id="converter">Converter</button>
+                        <button type="submit" class="btn btn-success" id="converter">Converter</button>
                     </div>
                     <div>
                         <p class="fs-5">
-                            <input type="text"  name="inputResultado"  value="">
+                            <input type="text" style="display:none" name="inputResultado"  value="">
                             <span class="fw-bolder ">Resultado da conversão:</span> <span id="resultado">00,00</span>
                         </p>
                     </div>
@@ -77,13 +77,8 @@ include("protect.php")
                 <th scope="col">Resultado</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>BRL</td>
-                    <td>50,00</td>
-                    <td>USD</td>
-                    <td>105,00</td>
-                </tr>
+            <tbody class="bodyTable">
+             
             </tbody>
             </table>
         </div>

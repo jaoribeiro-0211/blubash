@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+ 
   $('#example').DataTable({
     "language": {
       "paginate": {
@@ -17,10 +19,8 @@ $(document).ready(function() {
 });
 
 
-$('#converter').click(function () {
+/* $('').click(function () {
 
-  endpoint = 'latest'
-  access_key = '091dd9f43a81318721c6bff08c19f3e8'
 
   
   converterDe = document.querySelector('#converterDe').value;
@@ -30,10 +30,26 @@ $('#converter').click(function () {
   resultadoInput = document.querySelector('[name="inputResultado"]');
 
 
+  
+})
+ */
+
+$("#formConversor").submit(function(e) {
+  e.preventDefault();
+  endpoint = 'latest'
+  access_key = '091dd9f43a81318721c6bff08c19f3e8'
+
+
+  converterDe = document.querySelector('#converterDe').value;
+  para = document.querySelector('#para').value;
+  valorConversao =  document.querySelector('#valor').value;
+  resultado =  document.querySelector('#resultado');
+  resultadoInput = document.querySelector('[name="inputResultado"]');
+
   $.ajax({
-    type: 'POST',
+    method: 'POST',
     url:'http://api.exchangeratesapi.io/v1/'+ endpoint + '?access_key=' + access_key,
-    dataType: 'jsonp',
+    dataType: 'json', 
     success: function (json) {
       let BRL = json.rates.BRL.toFixed(2)
       let USD = json.rates.USD.toFixed(2)
@@ -44,14 +60,21 @@ $('#converter').click(function () {
         resultado.innerHTML = result.toFixed(2)
         resultadoInput.value = result.toFixed(2)
         let resultadoFinal = result.toFixed(2)
-        /* $.ajax({
+        $.ajax({
           type: 'POST',
+          dataType: 'json', 
           url:"http://localhost/blubash/ajaxController.php",
-          data:{resultadoFinal},
-          success: function (data) {
-            console.log(data)
-          }
-        }) */
+          data:{moeda1: converterDe, moeda2: para, valor: valorConversao, resultado: resultadoFinal},
+         
+        }).done(function (data) {
+          console.log(data)
+          /* converterDe.val("")
+          para.val("") 
+          valorConversao.val("")
+          resultado.val("")   
+          resultadoInput.val("") */
+          getConversor() 
+        })
       } else if (converterDe == 'BRL' && para == 'CAD') {
         let result = (CAD / BRL) * valorConversao
         console.log(result)
@@ -80,4 +103,20 @@ $('#converter').click(function () {
       console.log(e)
     }
   })
+  
 })
+
+function getConversor(){
+  $.ajax({
+    type: 'GET',
+    url:"http://localhost/blubash/AjaxGetConversor.php",
+    dataType: 'json', 
+  }).done(function (result) {
+    $(".bodyTable tr").remove();
+    for(var i = 0; i < result.length; i++){
+      $(".bodyTable").prepend('<tr><td>'+ result[i].moeda1 +'</td><td>'+result[i].moeda2 +'</td><td>'+ result[i].valor +'</td><td>'+result[i].resultado +'</td></tr>')
+    }    
+  })
+}
+
+getConversor()

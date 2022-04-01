@@ -1,12 +1,12 @@
 <?php
-include("conexao.php");
+include("connection.php");
 /* Verifica se os campos estao vazio */
 if(isset($_POST['login']) || isset($_POST['password'])){
   
   if(strlen($_POST['login']) == 0){
-    echo "Preencha o campo login";
+    $msgErro = "Preencha o campo login";
   } else if(strlen($_POST['password']) == 0){
-    echo "Preencha o campo password";
+    $msgErro = "Preencha o campo password";
   } else {
     /* Evitando sqlInjection */
     $login = $mysqli->real_escape_string($_POST['login']);
@@ -27,7 +27,7 @@ if(isset($_POST['login']) || isset($_POST['password'])){
       $_SESSION['id'] = $usuario['id'];
       $_SESSION['login'] = $usuario['login'];
 
-      header('Location: conversor.php');
+      header('Location: conversation.php');
     }  else {
       $msgErro = "Falha ao logar! login ou password incorreta";
      /*  echo "Falha ao logar! login ou password incorreta"; */

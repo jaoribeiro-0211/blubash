@@ -9,6 +9,10 @@
     margin-top: 30px;
 }
 
+#inverter {
+    margin-top: 30px;
+}
+
 .resultado {
     font-weight: bold;
     margin-top: 12px;
@@ -49,10 +53,11 @@
 
 #tabelaConversor_length label {
     display: grid;
-    grid-template-columns: 50px 100px 200px;
+    grid-template-columns: 40px 100px 200px;
     justify-content: center;
     align-items: center;
     gap: 10px;
+    margin-bottom: 8px;
 }
 
 
@@ -69,25 +74,20 @@
     display: grid;
     grid-template-columns: 68px 150px;
     gap: 10px;
+    margin-bottom: 8px;
 }
 
 
 /* Estilo Ordem de pagina */
 
 #tabelaConversor_info {
-    padding: 0;
-    margin-left: 21px;
-    margin-top: 10px;
-    line-height: 40px;
     text-align: left;
-    background-color: green;
 }
 
 
 /* Estilo Paginação */
 
 #tabelaConversor_paginate {
-    margin-right: 20px;
-    margin-top: 10px;
-    background-color: yellow;
+    display: flex;
+    flex-direction: row-reverse;
 }

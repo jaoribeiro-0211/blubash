@@ -35,6 +35,11 @@ include("protect.php")
                 </div>
                 <div class="d-flex justify-content-center align-items-center flex-column gap-4">
                     <div class="d-flex justify-content-center align-items-center gap-4">
+                      
+                        <div>
+                            <label for="exampleFormControlInput1" class="form-label">Valor</label>
+                            <input type="text" class="form-control" id="valor"  placeholder="300,00">
+                        </div>
                         <div>
                             <label for="converterDe" class="form-label">Converter de</label>
                             <select class="form-select" name="converterDe" aria-label="Default select example" id="converterDe">
@@ -44,11 +49,9 @@ include("protect.php")
                           <option value="CAD">CAD</option>
                           </select>
                         </div>
-                        <div>
-                            <label for="exampleFormControlInput1" class="form-label">Valor</label>
-                            <input type="text" class="form-control" id="valor" placeholder="300,00">
-                        </div>
-
+                        <button class="btn btn-primary" id="inverter">
+                            <img src="./img/reverse.svg" width="20px" alt="">
+                        </button>
                         <div>
                             <label for="para" class="form-label">Para</label>
                             <select class="form-select" name="para" aria-label="Default select example" id="para">
@@ -63,7 +66,7 @@ include("protect.php")
                     <div>
                         <p class="fs-5">
                             <input type="text" style="display:none" name="inputResultado"  value="">
-                            <span class="fw-bolder ">Resultado da conversão:</span> <span id="resultado">00,00</span>
+                            <span class="fw-bolder">Resultado da conversão:</span> <span id="resultado">00,00</span>
                         </p>
                     </div>
                 </div>
@@ -94,7 +97,8 @@ include("protect.php")
    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-
+   <!-- Jquery Mask -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- JS -->
     <script src="js/conversor.js"></script>
 </body>

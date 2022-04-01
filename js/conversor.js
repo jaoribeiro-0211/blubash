@@ -14,19 +14,24 @@ $(document).ready(function() {
             "search": "Procurar :",
         },
     });
+    /* Jquery Mask */
+    $('#valor').mask("#.##0,00", { reverse: true });
 });
+
+
 
 $("#formConversor").submit(function(e) {
     e.preventDefault();
+
     var endpoint = 'latest'
     var access_key = '091dd9f43a81318721c6bff08c19f3e8'
 
-
     var converterDe = document.querySelector('#converterDe').value;
     var para = document.querySelector('#para').value;
-    var valorConversao = document.querySelector('#valor').value;
+    var valorConversao = document.querySelector('#valor').value.replace(",", ".");
     var resultado = document.querySelector('#resultado');
     var resultadoInput = document.querySelector('[name="inputResultado"]');
+
 
     $.ajax({
         method: 'POST',
@@ -42,40 +47,42 @@ $("#formConversor").submit(function(e) {
                 resultado.innerHTML = result.toFixed(2)
                 resultadoInput.value = result.toFixed(2)
                 let resultadoFinal = result.toFixed(2)
-                $.ajax({
-                    type: 'POST',
-                    dataType: 'json',
-                    url: "http://localhost/blubash/ajaxController.php",
-                    data: { moeda1: converterDe, moeda2: para, valor: valorConversao, resultado: resultadoFinal },
-
-                }).done(function(data) {
-                    console.log(data)
-                        /* converterDe.val("")
-                        para.val("") 
-                        valorConversao.val("")
-                        resultado.val("")   
-                        resultadoInput.val("") */
-                    getConversor()
-                })
+                AjaxConversation(converterDe, para, valorConversao, resultadoFinal)
             } else if (converterDe == 'BRL' && para == 'CAD') {
                 let result = (CAD / BRL) * valorConversao
-                console.log(result)
+                resultado.innerHTML = result.toFixed(2)
+                resultadoInput.value = result.toFixed(2)
+                let resultadoFinal = result.toFixed(2)
+                AjaxConversation(converterDe, para, valorConversao, resultadoFinal)
 
             } else if (converterDe == 'USD' && para == 'BRL') {
+
                 let result = (BRL / USD) * valorConversao
-                console.log(result)
+                resultado.innerHTML = result.toFixed(2)
+                resultadoInput.value = result.toFixed(2)
+                let resultadoFinal = result.toFixed(2)
+                AjaxConversation(converterDe, para, valorConversao, resultadoFinal)
 
             } else if (converterDe == 'USD' && para == 'CAD') {
                 let result = (CAD / USD) * valorConversao
-                console.log(result)
+                resultado.innerHTML = result.toFixed(2)
+                resultadoInput.value = result.toFixed(2)
+                let resultadoFinal = result.toFixed(2)
+                AjaxConversation(converterDe, para, valorConversao, resultadoFinal)
 
             } else if (converterDe == 'CAD' && para == 'BRL') {
                 let result = (BRL / CAD) * valorConversao
-                console.log(result)
+                resultado.innerHTML = result.toFixed(2)
+                resultadoInput.value = result.toFixed(2)
+                let resultadoFinal = result.toFixed(2)
+                AjaxConversation(converterDe, para, valorConversao, resultadoFinal)
 
             } else if (converterDe == 'CAD' && para == 'USD') {
                 let result = (USD / CAD) * valorConversao
-                console.log(result)
+                resultado.innerHTML = result.toFixed(2)
+                resultadoInput.value = result.toFixed(2)
+                let resultadoFinal = result.toFixed(2)
+                AjaxConversation(converterDe, para, valorConversao, resultadoFinal)
 
             } else {
                 alert('Selecione uma moeda válida')
@@ -85,13 +92,13 @@ $("#formConversor").submit(function(e) {
             console.log(e)
         }
     })
-
 })
 
-function getConversor() {
+function AjaxGetConversation() {
+
     $.ajax({
         type: 'GET',
-        url: "http://localhost/blubash/AjaxGetConversor.php",
+        url: "http://localhost/blubash/AjaxGetConversation.php",
         dataType: 'json',
     }).done(function(result) {
         $(".bodyTable tr").remove();
@@ -101,4 +108,57 @@ function getConversor() {
     })
 }
 
-getConversor()
+function AjaxConversation(converterDe, para, valorConversao, resultadoFinal) {
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: "http://localhost/blubash/AjaxInsertConversation.php",
+        data: { moeda1: converterDe, moeda2: para, valor: valorConversao, resultado: resultadoFinal },
+
+    }).done(function(data) {
+
+        AjaxGetConversation()
+    })
+}
+
+$("#inverter").click(function(e) {
+    e.preventDefault();
+    let converterDeInverter = document.querySelector('#converterDe').value;
+    let paraInverter = document.querySelector('#para').value;
+
+    if (converterDeInverter == "BRL" && paraInverter == "USD") {
+
+        $("#para option[value='BRL']").prop('selected', true);
+        $("#converterDe option[value='USD']").prop('selected', true);
+    } else if (converterDeInverter == "BRL" && paraInverter == "CAD") {
+
+        $("#para option[value='BRL']").prop('selected', true);
+        $("#converterDe option[value='CAD']").prop('selected', true);
+
+    } else if (converterDeInverter == "USD" && paraInverter == "BRL") {
+
+        $("#para option[value='USD']").prop('selected', true);
+        $("#converterDe option[value='BRL']").prop('selected', true);
+
+    } else if (converterDeInverter == "USD" && paraInverter == "CAD") {
+
+        $("#para option[value='USD']").prop('selected', true);
+        $("#converterDe option[value='CAD']").prop('selected', true);
+
+    } else if (converterDeInverter == "CAD" && paraInverter == "BRL") {
+
+        $("#para option[value='CAD']").prop('selected', true);
+        $("#converterDe option[value='BRL']").prop('selected', true);
+
+    } else if (converterDeInverter == "CAD" && paraInverter == "USD") {
+
+        $("#para option[value='CAD']").prop('selected', true);
+        $("#converterDe option[value='USD']").prop('selected', true);
+
+    } else {
+        alert('Selecione uma moeda válida')
+    }
+})
+
+
+AjaxGetConversation()

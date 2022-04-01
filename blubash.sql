@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30-Mar-2022 às 21:59
+-- Tempo de geração: 01-Abr-2022 às 16:12
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.4.27
 
@@ -34,16 +34,6 @@ CREATE TABLE `conversor` (
   `valor` varchar(10) NOT NULL,
   `resultado` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `conversor`
---
-
-INSERT INTO `conversor` (`id`, `moeda1`, `moeda2`, `valor`, `resultado`) VALUES
-(24, 'BRL', 'USD', '25', '5.25'),
-(25, 'BRL', 'USD', '30', '6.30'),
-(26, 'BRL', 'USD', '30', '6.30'),
-(27, 'BRL', 'USD', '25', '5.25');
 
 -- --------------------------------------------------------
 
@@ -88,7 +78,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `conversor`
 --
 ALTER TABLE `conversor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`

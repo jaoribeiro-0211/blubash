@@ -75,8 +75,8 @@ include("protect.php")
             <thead>
                 <tr>
                 <th scope="col">Converter de</th>
-                <th scope="col">Valor</th>
                 <th scope="col">Para</th>
+                <th scope="col">Valor</th>              
                 <th scope="col">Resultado</th>
                 </tr>
             </thead>
